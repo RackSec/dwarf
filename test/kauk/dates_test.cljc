@@ -3,7 +3,9 @@
                :cljs [cljs.test :refer-macros [deftest is are testing]])
             #?(:clj [clj-time.core :as tc]
                :cljs [cljs-time.core :as tc])
-            [kauk.dates :as dates]))
+            [kauk.dates :as dates]
+            #?(:clj [kauk.test :refer [with-redef-calls]]
+               :cljs [kauk.test :refer-macros [with-redef-calls]])))
 
 (deftest parse-date-test
   (is (= (dates/parse-date nil) nil))

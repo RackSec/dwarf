@@ -5,11 +5,7 @@
                :cljs [cljs.core :refer [demunge]])
             [clojure.string :as str]))
 
-(defmacro get-name
-  [f]
-  `(-> ~f var meta :name))
-
-(defn redef-error
+(defn- redef-error
   [original-fn]
   (let [demunged-fn (-> original-fn str demunge)
         fn-name #?(:clj demunged-fn
@@ -24,7 +20,7 @@
        :expected (str fn-name " to be called.")
        :actual (str fn-name " was not called.")})))
 
-(defn ^:private with-redef-call-f
+(defn- with-redef-call-f
   [[original-fn new-fn] & code]
   `(let [called?# (atom false)
          wrapped-new-fn# (fn [& args#]
@@ -36,7 +32,7 @@
        (redef-error ~original-fn))))
 
 
-(defn ^:private correct-code-parameter
+(defn- correct-code-parameter
   "Fixes up the seq which is the code to put in a macro.
 
    Pass in `((println \"1\"))` and get back `(println \"1\")`;
