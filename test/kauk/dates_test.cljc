@@ -32,6 +32,7 @@
          "2016-04-08"))
   (are [input format expected]
        (= (dates/format-date input format) expected)
+    nil nil nil
     "2016-01-02 03:04:05" "MM/dd/yyyy" "01/02/2016"
     "2016-12-28" "MM/dd/yyyy" "12/28/2016"
     "2016-09-07T11:17:13.090Z" "dd MMM" "07 Sep"))
