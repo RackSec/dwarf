@@ -3,6 +3,8 @@
                :cljs [cljs.test :refer-macros [deftest is are testing]])
             #?(:clj [clj-time.core :as tc]
                :cljs [cljs-time.core :as tc])
+            #?(:clj [clj-time.format :as tf]
+               :cljs [cljs-time.format :as tf])
             [kauk.dates :as dates]
             #?(:clj [kauk.test :refer [with-redef-calls]]
                :cljs [kauk.test :refer-macros [with-redef-calls]])))
@@ -23,6 +25,9 @@
     "2014-10-05 14:15:16.988Z" (tc/date-time 2014 10 5 14 15 16 988)))
 
 (deftest unparse-date-test
+  (is (= (dates/unparse-date (tc/date-time 2016 4 8 12 30)
+                             (tf/formatter "YYYY MMMM"))
+         "2016 April"))
   (are [input expected]
        (= expected (dates/unparse-date input))
     nil nil
