@@ -16,7 +16,7 @@ before_script:
 script:
   - lein cljfmt check
   - lein test
-  - lein doo firefox test
+  - lein doo firefox test once
   - lein uberjar
 after_success:
   - lein cloverage --codecov
