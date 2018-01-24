@@ -1,7 +1,7 @@
 (ns dwarf.cljs-test-runner
   (:require [doo.runner :refer-macros [doo-tests]]
             [dwarf.dates-test]
-            [dwarf.test-test]))
+            [dwarf.mock-test]))
 
 (doo-tests 'dwarf.dates-test
-           'dwarf.test-test)
+           'dwarf.mock-test)
