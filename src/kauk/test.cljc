@@ -14,11 +14,11 @@
                              (str/split #" \{" 2)
                              first))]
     (do-report
-      {:type :fail
-       :message (str fn-name
-                  " is called somewhere within `with-redef-calls` body.")
-       :expected (str fn-name " to be called.")
-       :actual (str fn-name " was not called.")})))
+     {:type :fail
+      :message (str fn-name
+                    " is called somewhere within `with-redef-calls` body.")
+      :expected (str fn-name " to be called.")
+      :actual (str fn-name " was not called.")})))
 
 (defn- with-redef-call-f
   [[original-fn new-fn] & code]
@@ -30,7 +30,6 @@
        ~@code)
      (when-not @called?#
        (redef-error ~original-fn))))
-
 
 (defn- correct-code-parameter
   "Fixes up the seq which is the code to put in a macro.
