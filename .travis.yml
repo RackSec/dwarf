@@ -1,0 +1,28 @@
+language: clojure
+jdk:
+- oraclejdk8
+lein: 2.7.1
+cache:
+  directories:
+  - "$HOME/.lein"
+  - "$HOME/.m2"
+  - "$HOME/.nvm"
+  - "node_modules/"
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script:
+  - lein cljfmt check
+  - lein test
+  - lein doo firefox test
+  - lein uberjar
+after_success:
+  - lein cloverage --codecov
+  - bash <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json
+env:
+  global:
+  - CODECOV_TOKEN=034b9499-abc9-4ff6-8b88-0ad611c1b83b
+notifications:
+  email: false
+addons:
+  firefox: "39.0"
