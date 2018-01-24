@@ -1,6 +1,7 @@
 (defproject kauk "0.1.0-SNAPSHOT"
   :description "A bunch of test and date utilities for Clojure(Script) projects."
   :url "https://github.com/RackSec/kauk"
+  :lein-release {:deploy-via :clojars}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
