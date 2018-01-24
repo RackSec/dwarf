@@ -21,7 +21,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json
 env:
   global:
-  - CODECOV_TOKEN=034b9499-abc9-4ff6-8b88-0ad611c1b83b
+  - CODECOV_TOKEN=275b997d-0ce5-4a97-a379-3610b958dd1a
 notifications:
   email: false
 addons:
