@@ -5,7 +5,7 @@
                :cljs [cljs.core :refer [demunge]])
             [clojure.string :as str]))
 
-(defn- redef-error
+(defn redef-error
   [original-fn]
   (let [demunged-fn (-> original-fn str demunge)
         fn-name #?(:clj demunged-fn
