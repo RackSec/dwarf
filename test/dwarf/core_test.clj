@@ -1,6 +1,6 @@
-(ns kauk.core-test
+(ns dwarf.core-test
   (:require [clojure.test :refer :all]
-            [kauk.core :refer :all]))
+            [dwarf.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

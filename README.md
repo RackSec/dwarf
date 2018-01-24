@@ -1,7 +1,8 @@
-# Kauk (pronounced *Kaa-ook*)
+# Dwarf
 
 ```
-In Balto-Slavic mythology Kauk is a small, helpful, dwarf-like creatures bringing happiness and wealth.
+A helpful, little dwarf providing helpers/utilities for your Clojure(Script)
+projects.
 ```
 
 ## License
