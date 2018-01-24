@@ -19,7 +19,10 @@
                       :pretty-print true
                       :main "kauk.cljs-test-runner"}}}}
   :profiles {:dev {:dependencies [[doo "0.1.8"]]
-                   :plugins [[lein-doo "0.1.8"]]}}
+                   :cljfmt {:indents {let-flow [[:inner 0]]}
+                            :file-pattern #"\.clj[sxc]?$"}
+                   :plugins [[lein-doo "0.1.8"]
+                             [lein-cljfmt "0.5.7"]]}}
   :uberjar {:aot :all
             :omit-source true
             :cljsbuild {:jar true
