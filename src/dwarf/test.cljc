@@ -1,4 +1,4 @@
-(ns kauk.test
+(ns dwarf.test
   (:require #?(:clj [clojure.test :refer [do-report]]
                :cljs [cljs.test :refer [do-report]])
             #?(:clj [clojure.main :refer [demunge]]

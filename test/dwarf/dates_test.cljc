@@ -1,13 +1,13 @@
-(ns kauk.dates-test
+(ns dwarf.dates-test
   (:require #?(:clj [clojure.test :refer :all]
                :cljs [cljs.test :refer-macros [deftest is are testing]])
             #?(:clj [clj-time.core :as tc]
                :cljs [cljs-time.core :as tc])
             #?(:clj [clj-time.format :as tf]
                :cljs [cljs-time.format :as tf])
-            [kauk.dates :as dates]
-            #?(:clj [kauk.test :refer [with-redef-calls]]
-               :cljs [kauk.test :refer-macros [with-redef-calls]])))
+            [dwarf.dates :as dates]
+            #?(:clj [dwarf.test :refer [with-redef-calls]]
+               :cljs [dwarf.test :refer-macros [with-redef-calls]])))
 
 (deftest parse-date-test
   (is (= (dates/parse-date nil) nil))

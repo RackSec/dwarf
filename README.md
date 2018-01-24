@@ -1,8 +1,8 @@
-# Kauk
+# Dwarf
 
 ```
-In Balto-Slavic mythology, Kauk is a small, helpful, dwarf-like creatures
-bringing happiness and wealth.
+A helpful, little dwarf providing helpers/utilities for your Clojure(Script)
+projects.
 ```
 
 # Test utils
@@ -16,8 +16,8 @@ failure:
 (ns yourapp.core-test
   (:require #?(:clj [clojure.test :refer :all]
                :cljs [cljs.test :refer-macros [deftest is are testing]])
-            #?(:clj [kauk.test :refer [with-redef-calls]])
-               :cljs [kauk.test :refer-macros [with-redef-calls]]))
+            #?(:clj [dwarf.test :refer [with-redef-calls]])
+               :cljs [dwarf.test :refer-macros [with-redef-calls]]))
 
 (deftest foo-test
   (with-redef-calls [yourapp.core/foo (fn [a] (is (= a 1)))]
@@ -41,7 +41,7 @@ Parses a date from a couple of potential date formats:
 
 ```clojure
 (ns yourapp.core
-  (:require [kauk.dates :refer [parse-date]]))
+  (:require [dwarf.dates :refer [parse-date]]))
 
 (parse-date "2016-12-2") ;=> #object[org.joda.time.DateTime 0x75d16464 "2016-12-02T00:00:00.000Z"]
 (parse-date "July 12, 2016") ;=> #object[org.joda.time.DateTime 0x12a52c33 "2016-07-12T00:00:00.000Z"]
@@ -67,7 +67,7 @@ custom clj(s)-time format for the output string:
 
 ```clojure
 (ns yourapp.core
-  (:require [kauk.dates :refer [unparse-date]]
+  (:require [dwarf.dates :refer [unparse-date]]
             [clj-time.core :as tc]
             [clj-time.format :as tf]))
 
@@ -81,7 +81,7 @@ Reformats a given date string:
 
 ```clojure
 (ns yourapp.core
-  (:require [kauk.dates :refer [format-date]]
+  (:require [dwarf.dates :refer [format-date]]
 
 (format-date "2016-01-02 03:04:05" "MM/dd/yyyy") ;=> "01/02/2016"
 (format-date "2016-09-07T11:17:13.090Z" "dd MMM") ;=> ""07 Sep"

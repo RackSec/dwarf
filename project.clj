@@ -1,7 +1,6 @@
-(defproject kauk "0.1.0-SNAPSHOT"
+(defproject dwarf "0.1.0-SNAPSHOT"
   :description "A bunch of test and date utilities for Clojure(Script) projects."
-  :url "https://github.com/RackSec/kauk"
-  :lein-release {:deploy-via :clojars}
+  :url "https://github.com/RackSec/dwarf"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -18,7 +17,7 @@
            :compiler {:output-to "out/test.js"
                       :optimizations :whitespace
                       :pretty-print true
-                      :main "kauk.cljs-test-runner"}}}}
+                      :main "dwarf.cljs-test-runner"}}}}
   :profiles {:dev {:dependencies [[doo "0.1.8"]]
                    :cljfmt {:indents {let-flow [[:inner 0]]}
                             :file-pattern #"\.clj[sxc]?$"}
