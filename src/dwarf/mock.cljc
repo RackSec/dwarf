@@ -1,4 +1,4 @@
-(ns dwarf.test
+(ns dwarf.mock
   (:require #?(:clj [clojure.test :refer [do-report]]
                :cljs [cljs.test :refer [do-report]])
             #?(:clj [clojure.main :refer [demunge]]

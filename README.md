@@ -9,15 +9,15 @@ projects.
 
 ### `with-redef-calls`
 `with-redef-calls` works like `with-redefs`, but it also makes sure any
-redefined function was called in its body. If it wasn't it would report a test
+redefined function was called in its body. If it wasn't, it would report a test
 failure:
 
 ```clojure
 (ns yourapp.core-test
   (:require #?(:clj [clojure.test :refer :all]
                :cljs [cljs.test :refer-macros [deftest is are testing]])
-            #?(:clj [dwarf.test :refer [with-redef-calls]])
-               :cljs [dwarf.test :refer-macros [with-redef-calls]]))
+            #?(:clj [dwarf.mock :refer [with-redef-calls]])
+               :cljs [dwarf.mock :refer-macros [with-redef-calls]]))
 
 (deftest foo-test
   (with-redef-calls [yourapp.core/foo (fn [a] (is (= a 1)))]
@@ -84,8 +84,8 @@ Reformats a given date string:
   (:require [dwarf.dates :refer [format-date]]
 
 (format-date "2016-01-02 03:04:05" "MM/dd/yyyy") ;=> "01/02/2016"
-(format-date "2016-09-07T11:17:13.090Z" "dd MMM") ;=> ""07 Sep"
-(format-date "2016-09-07T11:17:13.090Z") ;=> "2016-09-07""
+(format-date "2016-09-07T11:17:13.090Z" "dd MMM") ;=> "07 Sep"
+(format-date "2016-09-07T11:17:13.090Z") ;=> "2016-09-07"
 ```
 
 
