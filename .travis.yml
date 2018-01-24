@@ -11,6 +11,8 @@ cache:
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - npm install -g karma-cli
+  - npm install karma-cljs-test karma-firefox-launcher
 script:
   - lein cljfmt check
   - lein test
