@@ -30,8 +30,10 @@
     (tc/date-time 2012 11 10) "11-10-2012"))
 
 (deftest format-date-test
-  (is (= (dates/format-date (tc/date-time 2016 4 8 12 30))
-         "2016-04-08"))
+  (are [input expected]
+       (= (dates/format-date input) expected)
+    (dates/format-date "not-a-date") nil
+    (tc/date-time 2016 4 8 12 30) "2016-04-08")
   (are [input format expected]
        (= (dates/format-date input format) expected)
     nil nil nil

@@ -39,6 +39,5 @@
   ([date]
    (format-date date "YYYY-MM-dd"))
   ([date format]
-   (when date
-     (tf/unparse (tf/formatter format)
-                 (tco/to-date-time date)))))
+   (when-let [parsed-date (tco/to-date-time date)]
+     (tf/unparse (tf/formatter format) parsed-date))))
