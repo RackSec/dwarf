@@ -1,7 +1,109 @@
 # Kauk (pronounced *Kaa-ook*)
 
 ```
-In Balto-Slavic mythology Kauk is a small, helpful, dwarf-like creatures bringing happiness and wealth.
+In Balto-Slavic mythology, Kauk is a small, helpful, dwarf-like creatures
+bringing happiness and wealth.
+```
+
+# Test utils
+
+### `with-redef-calls`
+`with-redef-calls` works like `with-redefs`, but it also makes sure any
+redefined function was called in its body. If it wasn't it would report a test
+failure:
+
+```clojure
+(ns yourapp.core-test
+  (:require #?(:clj [clojure.test :refer :all]
+               :cljs [cljs.test :refer-macros [deftest is are testing]])
+            #?(:clj [kauk.test :refer [with-redef-calls]])
+               :cljs [kauk.test :refer-macros [with-redef-calls]]))
+
+(deftest foo-test
+  (with-redef-calls [yourapp.core/foo (fn [a] (is (= a 1)))]
+    (is (= 1 1))))
+```
+
+Above will result in the following failure, since `yourapp.core/foo` never fired
+ in the test:
+
+```
+FAIL in (foo-test) (core_test.cljc:7)
+yourapp.core/foo@b91d8c4 is called somewhere within `with-redef-calls` body.
+expected: "yourapp.core/foo@b91d8c4 to be called."
+  actual: "yourapp.core/foo@b91d8c4 was not called."
+```
+
+# Date utils
+
+### `parse-date`
+Parses a date from a couple of potential date formats:
+
+```clojure
+(ns yourapp.core
+  (:require [kauk.dates :refer [parse-date]]))
+
+(parse-date "2016-12-2") ;=> #object[org.joda.time.DateTime 0x75d16464 "2016-12-02T00:00:00.000Z"]
+(parse-date "July 12, 2016") ;=> #object[org.joda.time.DateTime 0x12a52c33 "2016-07-12T00:00:00.000Z"]
+```
+
+To see a full list of built-in formatters refer to the source code.
+You can also pass your own clj(s)-time formatters (which will override the
+default-ones):
+
+```clojure
+(:require [clj-time.format :as tf])
+
+(def formatters [(tf/formatter "yyyy M d")
+                 (tf/formatter "yyyy MMMM")])
+
+(parse-date "2016 1 1" formatters) ;=> #object[org.joda.time.DateTime 0x32a595d4 "2016-01-01T00:00:00.000Z"]
+(parse-date "2016 February") ;=> #object[org.joda.time.DateTime 0x5fa5e51a "2016-02-01T00:00:00.000Z"]
+```
+
+### `unparse-date`
+Pass a date, get a formatted date string back. You can optionally pass a
+custom clj(s)-time format for the output string:
+
+```clojure
+(ns yourapp.core
+  (:require [kauk.dates :refer [unparse-date]]
+            [clj-time.core :as tc]
+            [clj-time.format :as tf]))
+
+(unparse-date (tc/date-time 2016 4 8 12 30)) ;=> "04-08-2016"
+(unparse-date (tc/date-time 2016 4 8 12 30)
+              (tf/formatter "YYYY MMMM")) ;=> "2016 April"
+```
+
+### `format-date`
+Reformats a given date string:
+
+```clojure
+(ns yourapp.core
+  (:require [kauk.dates :refer [format-date]]
+
+(format-date "2016-01-02 03:04:05" "MM/dd/yyyy") ;=> "01/02/2016"
+(format-date "2016-09-07T11:17:13.090Z" "dd MMM") ;=> ""07 Sep"
+(format-date "2016-09-07T11:17:13.090Z") ;=> "2016-09-07""
+```
+
+
+# Development
+To run the Clojure tests: `lein test`
+To run the ClojureScript tests: `lein doo firefox test`
+
+Cljs tests are ran using (Doo)(https://github.com/bensu/doo), and you'll need a
+bunch of dependencies. Refer to Doo's docs for more details, but here's a tldr;
+
+```
+npm install karma karma-cljs-test karma-firefox-launcher
+```
+
+You also have to have `karma-cli` installed globally:
+
+```
+npm install karma-cli -g
 ```
 
 ## License
