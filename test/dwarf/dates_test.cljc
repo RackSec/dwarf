@@ -5,9 +5,7 @@
                :cljs [cljs-time.core :as tc])
             #?(:clj [clj-time.format :as tf]
                :cljs [cljs-time.format :as tf])
-            [dwarf.dates :as dates]
-            #?(:clj [dwarf.test :refer [with-redef-calls]]
-               :cljs [dwarf.test :refer-macros [with-redef-calls]])))
+            [dwarf.dates :as dates]))
 
 (deftest parse-date-test
   (is (= (dates/parse-date nil) nil))
