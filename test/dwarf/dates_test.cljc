@@ -3,8 +3,6 @@
                :cljs [cljs.test :refer-macros [deftest is are testing]])
             #?(:clj [clj-time.core :as tc]
                :cljs [cljs-time.core :as tc])
-            #?(:clj [clj-time.format :as tf]
-               :cljs [cljs-time.format :as tf])
             [dwarf.dates :as dates]))
 
 (deftest test-parse-date
