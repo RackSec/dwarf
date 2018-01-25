@@ -61,21 +61,6 @@ default-ones):
 (parse-date "2016 February") ;=> #object[org.joda.time.DateTime 0x5fa5e51a "2016-02-01T00:00:00.000Z"]
 ```
 
-### `unparse-date`
-Pass a date, get a formatted date string back. You can optionally pass a
-custom clj(s)-time format for the output string:
-
-```clojure
-(ns yourapp.core
-  (:require [dwarf.dates :refer [unparse-date]]
-            [clj-time.core :as tc]
-            [clj-time.format :as tf]))
-
-(unparse-date (tc/date-time 2016 4 8 12 30)) ;=> "04-08-2016"
-(unparse-date (tc/date-time 2016 4 8 12 30)
-              (tf/formatter "YYYY MMMM")) ;=> "2016 April"
-```
-
 ### `format-date`
 Reformats a given date string:
 

@@ -28,13 +28,6 @@
        #?(:clj (catch Exception e (parse-date s (rest formatters)))
           :cljs (catch :default e (parse-date s (rest formatters))))))))
 
-(defn unparse-date
-  ([date]
-   (unparse-date date (tf/formatter "MM-dd-yyyy")))
-  ([date formatter]
-   (when-not (nil? date)
-     (tf/unparse formatter (tco/to-date-time date)))))
-
 (defn format-date
   ([date]
    (format-date date "YYYY-MM-dd"))

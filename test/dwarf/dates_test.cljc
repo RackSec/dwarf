@@ -7,7 +7,7 @@
                :cljs [cljs-time.format :as tf])
             [dwarf.dates :as dates]))
 
-(deftest parse-date-test
+(deftest test-parse-date
   (is (= (dates/parse-date nil) nil))
   (is (= (dates/parse-date "bogus") nil))
   (are [input expected]
@@ -22,17 +22,7 @@
     "2014-10-05T14:15:16.988Z" (tc/date-time 2014 10 5 14 15 16 988)
     "2014-10-05 14:15:16.988Z" (tc/date-time 2014 10 5 14 15 16 988)))
 
-(deftest unparse-date-test
-  (is (= (dates/unparse-date (tc/date-time 2016 4 8 12 30)
-                             (tf/formatter "YYYY MMMM"))
-         "2016 April"))
-  (are [input expected]
-       (= expected (dates/unparse-date input))
-    nil nil
-    (tc/date-time 2016 4 8 12 30) "04-08-2016"
-    (tc/date-time 2012 11 10) "11-10-2012"))
-
-(deftest format-date-test
+(deftest test-format-date
   (are [input expected]
        (= (dates/format-date input) expected)
     (dates/format-date "not-a-date") nil

@@ -9,7 +9,7 @@
   [_]
   :fn)
 
-(deftest with-redef-calls-test
+(deftest test-with-redef-calls
   (testing "Redefined function is called, error is never raised."
     (with-redefs
      [dwarf.mock/redef-error
