@@ -40,11 +40,25 @@ expected: "yourapp.core/foo@b91d8c4 to be called."
 Parses a date from a couple of potential date formats:
 
 ```clojure
-(ns yourapp.core
-  (:require [dwarf.dates :refer [parse-date]]))
+user=> (:require ''[dwarf.dates :refer [parse-date]]))
+nil
+user=> (parse-date "10/31/2016")
+#object[org.joda.time.DateTime 0x10d10130 "2016-10-31T00:00:00.000Z"]
 
-(parse-date "2016-12-2") ;=> #object[org.joda.time.DateTime 0x75d16464 "2016-12-02T00:00:00.000Z"]
-(parse-date "July 12, 2016") ;=> #object[org.joda.time.DateTime 0x12a52c33 "2016-07-12T00:00:00.000Z"]
+user=> (parse-date "2016-9-2")
+#object[org.joda.time.DateTime 0x77979057 "2016-09-02T00:00:00.000Z"]
+
+user=> (parse-date "2016-01-02 03:04:05")
+#object[org.joda.time.DateTime 0x6080252f "2016-01-02T03:04:05.000Z"]
+
+user=> (parse-date "2016-01-02T03:04:05")
+#object[org.joda.time.DateTime 0x2a65659f "2016-01-02T03:04:05.000Z"]
+
+user=> (parse-date "2014-10-05T14:15:16.988Z")
+#object[org.joda.time.DateTime 0x3d3e6a04 "2014-10-05T14:15:16.988Z"]
+
+user=> (parse-date "2014-10-05 14:15:16.988Z")
+#object[org.joda.time.DateTime 0x36efde7d "2014-10-05T14:15:16.988Z"]
 ```
 
 To see a full list of built-in formatters refer to the source code.
