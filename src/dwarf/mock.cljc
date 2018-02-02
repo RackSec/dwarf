@@ -23,13 +23,15 @@
 (defn- with-redef-call-f
   [[original-fn new-fn] & code]
   `(let [called?# (atom false)
+         return-value# (atom nil)
          wrapped-new-fn# (fn [& args#]
                            (reset! called?# true)
                            (apply ~new-fn args#))]
      (with-redefs [~original-fn wrapped-new-fn#]
-       ~@code)
+       (reset! return-value# ~@code))
      (when-not @called?#
-       (redef-error ~original-fn))))
+       (redef-error ~original-fn))
+     @return-value#))
 
 (defn- correct-code-parameter
   "Fixes up the seq which is the code to put in a macro.
