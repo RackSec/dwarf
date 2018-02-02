@@ -11,12 +11,11 @@
 
 (deftest test-with-redef-calls
   (testing "Redefined function is called, error is never raised."
-    (with-redefs
-     [dwarf.mock/redef-error
-      (fn [f]
-        (do-report {:type :fail
-                    :expected "dwarf.test/redef-error to never be called."
-                    :actual "dwarf.test/redef-error was called."}))]
+    (with-redefs [dwarf.mock/redef-error
+                  (fn [f]
+                    (do-report {:type :fail
+                                :expected "dwarf.test/redef-error to never be called."
+                                :actual "dwarf.test/redef-error was called."}))]
       (with-redef-calls [test-fn (fn [s]
                                    (is (= s "test")))]
         (test-fn "test"))))
@@ -24,4 +23,8 @@
     (with-redefs [dwarf.mock/redef-error
                   (fn [f]
                     (is (= (f nil) :fn)))]
-      (with-redef-calls [test-fn (fn [_])]))))
+      (with-redef-calls [test-fn (fn [_])])))
+  (testing "with-redef-calls is returning"
+    (is (= :x
+           (with-redef-calls [test-fn (fn [arg] arg)]
+             (test-fn :x))))))
