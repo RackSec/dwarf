@@ -1,4 +1,4 @@
-(defproject dwarf "0.1.1-SNAPSHOT"
+(defproject dwarf "0.1.1"
   :description "A bunch of test and date utilities for Clojure(Script) projects."
   :url "https://github.com/RackSec/dwarf"
   :license {:name "Eclipse Public License"
